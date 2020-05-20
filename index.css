@@ -1,0 +1,207 @@
+body {
+	background-color: black;
+	user-drag: none; 
+	user-select: none;
+}
+
+#window{
+	height: 100%;
+	width: 100%;
+}
+
+#game {
+	display: flex;
+	user-drag: none; 
+	user-select: none;
+	position: absolute;
+  	top: 50%;
+  	left: 50%;
+	margin-top: -425px;
+	margin-left: -475px;
+	height: 750px;
+	width: 950px;
+	/border: 1px blue solid;
+}
+
+#cursor{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 999999999999;
+	display: none;
+}
+
+
+#screen{
+	margin:0;
+	position: relative;
+	width: 750px;
+	height: 750px;
+	top:0;
+	background-color: black;
+	overflow: hidden;
+	/border: 1px green solid;
+}
+
+#menu{
+	margin:0;
+	left:0px;
+	position: relative;
+	width: 100px;
+	height: 750px;
+	/border: 1px yellow solid;
+}
+
+#inventory{
+	margin:0;
+	position: relative;
+	width: 100px;
+	height: 750px;
+	/border: 1px orange solid;
+}
+
+#vinette{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	opacity: .5;
+	z-index: 7;
+	user-drag: none; 
+	user-select: none;
+}
+
+#transitions{
+	cursor:  url(assets/other/closed.png), auto;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 5;
+	top: 0;
+}
+
+.transition{
+	cursor:  url(assets/other/closed.png), auto;
+	position: absolute;	
+	width: 100%;
+	height: 100%;
+}
+
+#frame {
+	width: 750px;
+	height: 750px;
+}
+
+#img {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	z-index: 0;	
+}
+
+.picBox {
+	position:absolute;
+	width: 100%;
+	height: 100%;
+	left: 0px;
+	top: 0px;
+	z-index: 4;
+}
+
+.box{
+	z-index: 10;
+	position:absolute;
+	/border: 1px blue solid;
+}
+
+.gif{
+	position:absolute;
+	z-index: 6;
+	width:100%;
+	height:100%;
+	visibility: hidden;
+}
+
+.inventory {
+	left: 0px;
+	top: 0px;
+	position: relative;
+	width: 100px;
+	height: 100px
+}
+
+.inventory img {
+	position:absolute;
+	z-index: 6;
+	width:100%;
+	height:100%;
+}
+
+#preloads img {
+	position:absolute;
+	width:1px;
+	height:1px;
+	opacity:0;
+}
+
+.leftCursor {
+	cursor: url(assets/other/left.png), auto;
+} .rightCursor {
+	cursor: url(assets/other/right.png), auto;
+} .forwardCursor {
+	cursor: url(assets/other/forward.png), auto;
+} .backCursor {
+	cursor: url(assets/other/back.png), auto;
+} .zoomCursor {
+	cursor: cell;
+} .interactCursor {
+	cursor: pointer;
+} .closedCursor {
+	cursor:  url(assets/other/closed.png), auto;
+} .openCursor {
+	cursor:  url(assets/other/open.png), auto;
+} .defaultCursor {
+	cursor: default;
+}
+
+@keyframes leftIn{
+   from{transform: translateX(0);
+   } to {transform: translateX(750px)}
+}
+@keyframes leftOut{
+   from{transform: translateX(0);}
+}
+@keyframes rightIn{
+   from{transform: translateX(0);
+   } to {transform: translateX(-750px)}
+}
+@keyframes rightOut{
+   from{transform: translateX(0);}
+}
+@keyframes fadeIn{
+   from{opacity: 0;} to {opacity: 1;}
+}
+@keyframes fadeOut{
+   from{opacity: 1;}
+}
+
+.leftIn{
+	animation:leftIn .4s;
+} .leftOut{
+	animation:leftOut .4s;
+	transform: translateX(750px);
+} .rightIn{
+	animation:rightIn .4s;
+} .rightOut{
+	animation:rightOut .4s;
+	transform: translateX(-750px);
+} .fadeIn{
+	animation:fadeIn 1s;
+} .fadeOut{
+	animation:fadeOut 1s;
+	opacity: 0;
+}
+
+#myvideo:-webkit-full-screen {
+  width: 100%;
+  height: 100%;
+}
