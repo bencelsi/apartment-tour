@@ -1,6 +1,6 @@
 (function() {
 	"use strict";
-	const FRAME_PATH = "assets/frames/test2/"
+	const FRAME_PATH = "assets/frames/"
 	const GIF_PATH = "assets/gifs/"
 	const OTHER_PATH = "assets/other/"
 	const AUDIO_PATH = "assets/audio/"
@@ -11,15 +11,11 @@
 	const SIDE_SPEED = 400;
 	const FADE_SPEED = 400;
 
-	let power = false;
 	let processes = 0; //whether not to listen to user input
-	let frame = 1;
-	let lever = 0;
-
+	let frame = 101;
+	
 	window.onload = function() {
-		initModel();
 		initView();
-		initController();
 	};
 
 
@@ -27,38 +23,62 @@
 
 //MODEL DATA
 const frames = { 
-	1:{//1
-		left: 4, right: 2, forward: 5
-	},2:{//2
-		left: 1, right: 3, forward: 13
-	},3:{//3
-		left: 2, right: 4
-	},4:{//4
-		left: 3, right: 1, forward: 16
-	},5:{//5
+	101:{//1
+		left: 103, right: 102, forward: 1
+	},102:{//2
+		left: 101
+	},103:{//3
+		right: 101
+	},1:{//4
+		left: 2, right: 4, forward: 9
+	},2:{//5
+		left: 3, right: 1
+	},3:{//6
+		left: 4, right: 2
+	},4:{//7
+		left: 1, right: 3, forward: 5
+	},5:{//8
 		left: 8, right: 6
-	},6:{//6
+	},6:{//9
 		left: 5, right: 7
-	},7:{//7
-		left: 6, right: 8, forward: 3
-	},8:{//8
-		left: 7, right: 5, forward: 12
-	},9:{//9
-		left: 12, right: 10
-	},10:{//10
-		left: 9, right: 11, forward: 6
-	},11:{//11
+	},7:{//10
+		left: 6, right: 8, forward: 2
+	},8:{//11
+		left: 7, right: 5
+	},9:{//12
 		left: 10, right: 12
-	},12:{//12
-		left: 11, right: 9
-	},13:{//13
-		left: 16, right: 14
+	},10:{//13
+		left: 11, right: 9, forward: 13
+	},11:{
+		left: 12, right: 10, forward: 3
+	},12:{
+		left: 9, right: 11
+	},13:{
+		left: 14, right: 15
 	},14:{
-		left: 13, right: 15, forward: 2
+		left: 16, right: 13
 	},15:{
-		left: 14, right: 16
+		left: 13, right: 16
 	},16:{
-		left: 15, right: 13
+		left: 15, right: 14, forward: 12
+	},17:{
+		left: 20, right: 18
+	},18:{
+		left: 17, right: 19
+	},19:{
+		left: 18, right: 20
+	},20:{
+		left: 19, right: 17
+	},21:{
+		left: 24, right: 23
+	},22:{
+		left: 23, right: 24
+	},23:{
+		left: 21, right: 22
+	},24:{
+		left: 22, right: 21
+	},25:{
+		left: 22, right: 21
 	}
 }
 
@@ -94,184 +114,63 @@ const boxes = {
 			pos: [.25, .75, .25, .75],
 			transition: "fade",
 			cursor: "forward"
-		},
-		back: {
-			pos: [0, 1, 0, .2],
-			transition: "fade",
-			cursor: "back"
 		}
 	},
 	custom: {
-		/*
-		3:	[{	pos: [.1, .75, .25, .75],
+		2:	[{	pos: [.2, .42, .15, .7],
 				cursor: "forward",
 				addListeners: function(box) {
 					box.onclick = ()=>{
-						transition(8, "fade");
-						playGif("sidepath1", 9, 350);
-						playSound("sidepath", 0, false);
+						transition(21, "fade");
 					};
 				}
 			}],
-		11:[{	pos: [.05, .2, .25, .75],
-				cursor: "zoom",
-				addListeners: function(box) {
-					box.onclick = ()=>transition(14, "fade");
-				}
-			}],
-		12:[{ pos: [.32, .65, .4, .48],
-				condition: ()=>{return(inventory[0].state == 0);},
-				cursor: "open",
+		12:	[{	pos: [.2, .4, .15, .7],
+				cursor: "forward",
 				addListeners: function(box) {
 					box.onclick = ()=>{
-						inventory[0].state = 1;
-						updateCustomBoxes(frame);
-						updatePics(frame);
-						updateInventory(frame);
-					}
+						transition(17, "fade");
+					};
 				}
 			}],
-		14:[{	pos: [.45, .57, .4, .47],
-				cursor: "open",
+		19:	[{	pos: [.45, .75, .1, .7],
+				cursor: "forward",
 				addListeners: function(box) {
 					box.onclick = ()=>{
-						power = true;
-						updatePics(frame);
-					}
-				}
-			},{condition: ()=>{return(power);},
-				img: "x12",
-				cursor: "open",
-			}],
-		16:[{ condition: ()=>{return(inventory[0].state != 3);},
-				pos: [.45, .5, .33, .42],
-				cursor: "open",
-				id: "frontDoor",
-				addListeners: function(box) {
-					box.onclick = ()=>{
-						if (inventory[0].state <= 1){
-							//playSound("momoko", 1, true);s
-						} else if (inventory[0].state == 2){
-							inventory[0].state = 3;
-							updatePics(frame);
-							updateCustomBoxes(frame);
-						}
-					}
+						transition(10, "fade");
+					};
 				}
 			}],
-		24:[{	pos: [.48, .57, .87, .93],
-				cursor: "zoom",
+		22:	[{	pos: [.55, .9, 0, .87],
+			cursor: "forward",
+			addListeners: function(box) {
+				box.onclick = ()=>{
+					transition(4, "fade");
+				};
+			}
+		}],
+		24:	[{	pos: [.45, .5, .2, .25],
+				cursor: "forward",
 				addListeners: function(box) {
 					box.onclick = ()=>{
-						transition(12, "fade");
-					}
+						transition(25, "none");
+					};
 				}
-			}]*/
+			}],
+
+		25:	[{	pos: [.2, .25, .12, .18],
+				cursor: "forward",
+				addListeners: function(box) {
+					box.onclick = ()=>{
+						transition(24, "none");
+					};
+				}
+			}],
+		
 	},
 	pics: {
-		/*
-		12:[{ condition: ()=>{return(inventory[0].state == 0);},
-				img: "x12",
-			}],
-		14: [{ condition: ()=>{console.log(power); return(power == true);},
-				img: "x14.1",
-		}],
-		16:[{	condition: ()=>{return(inventory[0].state == 2);},
-				img: "x16.1",
-			},{
-				condition: ()=>{return(inventory[0].state == 3);},
-				img: "x16.2",
-			}]*/
 	}
 }
-
-	
-	
-
-
-
-
-
-
-
-
-
-//******************************************
-//*****************MODEL********************
-//******************************************
-function initModel() {
-	initSounds();
-}
-
-function initSounds() {
-		let rain = playSound("outsiderain", 1, true);
-		//let generator = playSound("reddit", .5, true);
-		//json.sounds.rain = rain;
-		//json.sounds.rain.volume = 0;	
-		rain.volume = .2;
-		for (let i = 0; i < 999; i++) {
-			//json.sounds.rain.volume += .001;
-		}
-	}
-
-function setVolume(n, volume, speed) {
-		//	json.sounds.n.volume = volume;
-}
-
-
-
-
-
-
-
-
-
-
-//******************************************
-//*****************CONTROLLER***************
-//******************************************
-function initController() {
-	updateInventory();
-}
-
-//makes inventory boxes draggable
-function makeDraggable(box, targetId, action) {
-	setBoxCursor(box, "open");
-	box.onmousedown = function(event) {
-		event.preventDefault();
-		setBoxCursor(box, "closed");	
-		let boxX = parseInt(box.style.left)
-		let boxY = parseInt(box.style.top)
-		let mouseX = event.clientX
-		var mouseY = event.clientY
-		
-		document.onmousemove = function(event) {
-			event.preventDefault();
-			box.style.left = boxX + event.clientX - mouseX + "px";
-			box.style.top = boxY + event.clientY - mouseY + "px";
-		};
-
-		document.onmouseup = function(event) {
-			event.preventDefault();
-			let target = getById(targetId);
-			if (target != null && isCollide(box, target)){
-				action();
-			} else {
-				box.style.left = boxX;
-				box.style.top = boxY;
-				//setBoxPos(box, [0,0,0,0]);
-				document.onmousemove = null;
-				setBoxCursor(box, "open");
-			}
-		};
-	};
-}
-
-
-
-
-
-
 
 
 
@@ -291,8 +190,6 @@ function initView() {
 function updateBoxes(newFrame) {
 	frame = newFrame;
 	getById("img").src = FRAME_PATH + newFrame + ".jpg"
-	console.log(newFrame);
-	updatePics(newFrame);
 	updateStandardBoxes(newFrame);
 	updateCustomBoxes(newFrame);
 }
@@ -304,7 +201,6 @@ function updateStandardBoxes(frame) {
 	updateStandardBox(boxes.standard.left, frames[frame].left);
 	updateStandardBox(boxes.standard.right, frames[frame].right);
 	updateStandardBox(boxes.standard.forward, frames[frame].forward);
-	updateStandardBox(boxes.standard.back, frames[frame].back);
 }
 
 function updateStandardBox(boxData, destinationFrame) {
@@ -322,7 +218,6 @@ function makeStandardBoxes() {
 	makeStandardBox(boxes.standard.left);
 	makeStandardBox(boxes.standard.right);
 	makeStandardBox(boxes.standard.forward);
-	makeStandardBox(boxes.standard.back);
 } 
 
 function makeStandardBox(boxData) {
@@ -354,23 +249,6 @@ function makeCustomBox(boxData) {
 }
 
 
-
-
-//PIC BOXES
-function updatePics(frame){
-	getById("pics").innerHTML = "";
-	let pics = boxes.pics[frame];
-	if (pics != null){
-		for (let i = 0; i < pics.length; i++) {
-			if (pics[i].condition == null || pics[i].condition()){
-				let pic = document.createElement("img");
-				pic.classList.add("picBox");
-				pic.src = BOX_PATH + simpleEval(pics[i].img) + ".png";
-				getById("pics").appendChild(pic);
-			}
-		}
-	}
-}
 
 
 //INVENTORY BOXES
@@ -462,40 +340,13 @@ function createTransition(type) {
 	getById("transitions").appendChild(transition);
 }
 
-//OTHER
-//Plays the gif of the given name.  Takes the number of frames and the delay to calculate the time... (maybe make this automatic somehow?)
-function playGif(name, frames, delay) {
-	processes++;
-	let gif = getById("fullGif");
-	gif.src = GIF_PATH + name + ".gif" + "?a="+Math.random();
-	gif.style.visibility = "visible"
-	getById("movies").appendChild(gif);
-	setTimeout(function() {
-		gif.style.visibility = "hidden";
-		processes--;
-	}, frames*delay);	
-}
-
-function playSound(name, volume, loop) {
-	let sound = new Audio(AUDIO_PATH + name + ".mp3");	
-	sound.volume = volume;
-	sound.play();
-	return sound;
-}
-
-//launches full screen mode on the given element.
-function launchFullScreen(element) {
-	if(element.requestFullScreen) {
-	   element.requestFullScreen();
-	} else if(element.mozRequestFullScreen) {
-	   element.mozRequestFullScreen();
-	} else if(element.webkitRequestFullScreen) {
-	   element.webkitRequestFullScreen();
-	}
-}
-
 function importImages() {
-	for (let i = 1; i < 13; i++) {
+	for (let i = 1; i <= 25; i++) {
+		let preload = new Image();
+		preload.src = FRAME_PATH + i + ".jpg";
+		getById("preloads").appendChild(preload);
+	}
+	for (let i = 101; i <= 103; i++) {
 		let preload = new Image();
 		preload.src = FRAME_PATH + i + ".jpg";
 		getById("preloads").appendChild(preload);
