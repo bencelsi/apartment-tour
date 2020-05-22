@@ -1,5 +1,5 @@
 body {
-	background-color: white;
+	background-color: black;
 	user-drag: none; 
 	user-select: none;
 }
@@ -142,7 +142,9 @@ body {
 	height:1px;
 	opacity:0;
 }
-
+/***********/
+/********** CURSORS */
+/**********/
 .leftCursor {
 	cursor: url(assets/other/left.png), auto;
 } .rightCursor {
