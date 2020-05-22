@@ -12,7 +12,7 @@
 	const FADE_SPEED = 400;
 
 	let processes = 0; //whether not to listen to user input
-	let frame = 101;
+	let frame = 1;
 	
 	window.onload = function() {
 		initView();
